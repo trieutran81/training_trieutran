@@ -10,7 +10,6 @@ var getAllCustomer = (req, res) => {
 }
 var createCustomer = (req, res) => {
     var customer = Customer({
-        customerID: req.body.customerID,
         email: req.body.email,
         password: req.body.password,
         role: req.body.role
@@ -35,8 +34,7 @@ var updateCustomer = (req, res) => {
 
     Customer.findOneAndUpdate(query, {
         email: req.body.email,
-        role: req.body.role,
-        password: req.body.password
+        role: req.body.role
     }, { upsert: true }, (e, raw) => {
         if (e) {
             res.status(400).send('Invalid customer supplied',e);
